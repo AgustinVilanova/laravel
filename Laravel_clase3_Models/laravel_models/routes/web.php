@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/actors', 'ActorController@index');
+Route::get('/actors/{id}', 'ActorController@show');
