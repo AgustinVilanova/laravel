@@ -17,4 +17,12 @@ class Actors extends Model
     $actors= $this->first_name." ".$this->last_name;
     return $actors;
   }
+
+
+  public function movies() {
+
+    return $this->belongsToMany(Movies::class, 'actor_movie', 'actor_id', 'movie_id');
+
+  }
+
 }
