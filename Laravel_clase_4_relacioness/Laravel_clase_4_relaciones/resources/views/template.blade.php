@@ -7,7 +7,15 @@
   </head>
   <body>
     <div class="container">
-      @yield('content')
+      <div class="row">
+        <div class="col col col col-xl-7">
+          <div class="card">
+            <div class="card-body">
+                @yield('content')
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </body>

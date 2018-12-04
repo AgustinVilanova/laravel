@@ -10,6 +10,6 @@
   <p>Rating: {{$actor->rating}}</p>
   {{-- @dd($peliFavorita); --}}
   <p>Pelicula Favorita: {{$peliFavorita? $peliFavorita->title:"No tiene Pelicula favorita"}}</p>
-  <a href="/actors">Volver</a>
+  <a class="btn btn-primary" href="/actors">Volver</a>
 
 @endsection
