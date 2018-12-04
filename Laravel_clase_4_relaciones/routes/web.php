@@ -1,5 +1,6 @@
 <?php
-
+use \app\http\controllers\ActorsController;
+use app\http\controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/actors', 'ActorsController@index');
+Route::get('/actors/{id}', 'ActorsController@show');
