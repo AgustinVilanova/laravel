@@ -5,17 +5,17 @@
 @section('content')
 <h1>Actores</h1>
 <ul>
-  {{-- @dd($actors[0]->movies) --}}
+  @dd($actors)
   @forelse ($actors as $oneActor)
       <li>{{ $oneActor->getFullName() }}
-              <ul>
+          {{-- <ul>
           @forelse ($oneActor->movies as $oneMovie)
             <li><b>{{$oneMovie->title}}</b></li>
           @empty
             <p>No tiene Peliculas</p>
 
           @endforelse
-        </ul>
+        </ul> --}}
         <a href="actors/{{$oneActor->id}}">Detalle</a>
       </li>
   @empty
