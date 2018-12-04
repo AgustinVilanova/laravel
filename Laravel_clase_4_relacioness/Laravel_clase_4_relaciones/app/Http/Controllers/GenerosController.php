@@ -9,8 +9,10 @@ class GenerosController extends Controller
 {
     public function generos(){
 
-      $generos= Movie::all();
+      $generos= Genre::all();
       return view('genres.genres')->with(compact('generos'));
 
     }
+
+
 }

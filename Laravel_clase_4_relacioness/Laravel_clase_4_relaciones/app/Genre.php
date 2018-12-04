@@ -8,8 +8,8 @@ class Genre extends Model
 {
   protected $guarded= [];
 
-  public function genresMovies(){
+  public function movies(){
 
-    return $this->belongsTo(Movie::class);
+    return $this->hasMany(Movie::class);
   }
 }

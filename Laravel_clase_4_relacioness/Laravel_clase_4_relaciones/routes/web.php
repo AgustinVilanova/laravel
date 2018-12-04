@@ -19,3 +19,4 @@ Route::get('/', function () {
 Route::get('/actors', 'ActorsController@index');
 Route::get('/actors/{id}', 'ActorsController@show');
 Route::get('/genres','GenerosController@generos');
+Route::get('/movies/{id}', 'MoviesController@show');
