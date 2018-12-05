@@ -1,0 +1,31 @@
+Como tener laravel
+1. instalar composer para el sistema operativo que tengas
+
+
+Como crear un proyecto laravel:
+1. composer install
+2. composer create-project laravel/laravel hola_mundo
+3. en el directorio del proyecto: php artisan key:generate 
+
+Como clonar un repositorio que esta creado con Laravel
+1. Clonamos
+2. composer install
+3. crear el archivo .env
+4. php artisan key:generate
+
+Como abrir el proyecto en el navegador 
+1. en el repositorio del proyecto coloco en la cosola: php artisan serve
+2. en el navegador ir a la direccion localhost:8000
+
+Como generar un model y controler
+1.php artisan make:model nombre_del_modelo(Tabla)
+2. php artisan make:controller nombre_del_controlador
+
+Relaciones:
+belongsTo: Pertenece a..
+hasOne: Tiene un
+hasMany: Tiene Muchos
+belongsToMany:Muchos a muchos
+
+
+Repo de github: https://github.com/AgustinVilanova/laravel.git
