@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Movie;
 
 class MoviesController extends Controller
 {
@@ -13,7 +14,8 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        //
+        $movies=Movie::all();
+        return view('movies.index')->with(compact('movies'));
     }
 
     /**
@@ -23,7 +25,7 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create');
     }
 
     /**
@@ -34,7 +36,20 @@ class MoviesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      var_dump($request->all());
+      $this->validate($request,[
+        'title' => 'required',
+        'rating' => 'required',
+        'awards' => 'required',
+        'length' => 'required',
+        'genre_id' => 'required',
+        'year' => 'required',
+        'month' => 'required',
+        'day' => 'required'
+      ], [
+        'required' => 'Los Campos son obligatorios',
+      ]
+        );
     }
 
     /**

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> @yield('title') </title>
+    <link rel="stylesheet" href={{asset('css/app.css') }}>
+  </head>
+  <body>
+    @yield('titular')
+    <section class="container">
+      <div class="">
+        @yield('content')
+      </div>
+
+
+    </section>
+  </body>
+</html>
