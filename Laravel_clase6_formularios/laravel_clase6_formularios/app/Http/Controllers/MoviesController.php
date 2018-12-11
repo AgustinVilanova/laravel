@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use App\Genre;
 
 class MoviesController extends Controller
 {
@@ -25,7 +26,8 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        return view('movies.create');
+      $genres= Genre::all();
+        return view('movies.create')->with(compact('genres'));
     }
 
     /**
@@ -38,18 +40,24 @@ class MoviesController extends Controller
     {
       var_dump($request->all());
       $this->validate($request,[
-        'title' => 'required',
-        'rating' => 'required',
-        'awards' => 'required',
-        'length' => 'required',
-        'genre_id' => 'required',
-        'year' => 'required',
-        'month' => 'required',
-        'day' => 'required'
+        'title' => 'required | alpha', //tendria que que poner una validacion para poder poner espacios entre palabras con una expresion regular
+        'rating' => 'required | numeric',
+        'awards' => 'required | integer' ,
+        'length' => 'required | integer',
+        'genre_id' => 'required | integer',
+        'year' => 'required | integer',
+        'month' => 'required | integer',
+        'day' => 'required | integer'
       ], [
-        'required' => 'Los Campos son obligatorios',
+        'required' => 'Este campo es obligatorio',
+        'numeric' => 'Este campo debe contener numeros',
+        'alpha' => 'Este campo solo debe contener letras',
+        'integer' => 'Este campo debe contener numeros enteros'
       ]
         );
+        $release_date= $request->year."-".$request->month."-".$request->day;
+        $movie= Movie::create(['title'=>$request->title,'rating'=>$request->rating, 'awards'=>$request->awards, 'release_date'=>$release_date, 'length'=>$request->length, 'genre_id'=>$request->genre_id]);
+        return redirect('movies');
     }
 
     /**
@@ -60,7 +68,8 @@ class MoviesController extends Controller
      */
     public function show($id)
     {
-        //
+        $movie= Movie::find($id);
+        return view('movies.show')->with(compact('movie'));
     }
 
     /**
@@ -71,7 +80,12 @@ class MoviesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $movie= Movie::find($id);
+        $genres=Genre::all();
+        $release_date = $movie->release_date;
+        $release_date= explode("-", $release_date );
+
+        return view('movies.edit')->with(compact('movie','genres','release_date'));
     }
 
     /**
@@ -83,7 +97,33 @@ class MoviesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      var_dump($request->all());
+      $this->validate($request,[
+        'title' => 'required ', //tendria que que poner una validacion para poder poner espacios entre palabras con una expresion regular
+        'rating' => 'required | numeric',
+        'awards' => 'required | integer' ,
+        'length' => 'required | integer',
+        'genre_id' => 'required | integer',
+        'year' => 'required | integer',
+        'month' => 'required | integer',
+        'day' => 'required | integer'
+      ], [
+        'required' => 'Este campo es obligatorio',
+        'numeric' => 'Este campo debe contener numeros',
+        'alpha' => 'Este campo solo debe contener letras',
+        'integer' => 'Este campo debe contener numeros enteros'
+      ]
+        );
+        $release_date= $request->year."-".$request->month."-".$request->day;
+        $movie= Movie::find($id);
+        $movie->title=$request->title;
+        $movie->rating=$request->rating;
+        $movie->awards=$request->awards;
+        $movie->release_date=$release_date;
+        $movie->length=$request->length;
+        $movie->genre_id=$request->genre_id;
+        $movie->save();
+        return redirect('movies');
     }
 
     /**
@@ -94,6 +134,8 @@ class MoviesController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $movie = Movie::find($id);
+      $movie->delete();
+      return redirect('movies');
     }
 }

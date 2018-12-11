@@ -6,7 +6,11 @@
     <link rel="stylesheet" href={{asset('css/app.css') }}>
   </head>
   <body>
-    @yield('titular')
+
+    <div class="content col ">
+        @yield('titular')
+    </div>
+
     <section class="container">
       <div class="">
         @yield('content')
